@@ -1,35 +1,27 @@
-import React, { Component } from 'react';
-var Main = require('./App/Components/Main');
-var ReactNative = require('react-native');
+import React, { Component } from 'react'
+var Main = require('./App/Components/Main')
+var ReactNative = require('react-native')
 
 var {
     AppRegistry,
     StyleSheet,
     Text,
     View
-} = ReactNative;
+} = ReactNative
 
-import {StackNavigator} from 'react-navigation';
+import {
+  StackNavigator
+} from 'react-navigation'
 
 var styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     backgroundColor: '#111111'
-  },
-});
+  }
+})
 
-// var GrooveBass = React.createClass({
-class GrooveBass extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  }
-  render() {
-    return (
-      <Text>Nav workin</Text>
-    );
-  }
-  const Groovin = StackNavigator({
-    Home: {screen:GrooveBass}
-  })
-});
-AppRegistry.registerComponent('Groovin', () => Groovin);
+const GrooveBass = StackNavigator({
+  Main: {screen: Main}
+})
+
+AppRegistry.registerComponent('GrooveBass', () => GrooveBass)

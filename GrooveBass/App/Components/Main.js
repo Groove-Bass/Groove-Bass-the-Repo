@@ -13,14 +13,18 @@ var {
   ActivityIndicatorIOS
 } = ReactNative;
 
-class Main extends React.Component{
-  render(){
+class Main extends React.Component {
+  static navigationOptions = {
+    title: 'Welcome',
+  };
+  render() {
+    const { navigate } = this.props.navigation;
     return (
       <View>
         <Text>Testing our SHIT</Text>
       </View>
-    )
+    );
   }
-};
+}
 
 module.exports = Main;
