@@ -16,7 +16,8 @@ var {
 
 class Player extends React.Component {
   static navigationOptions = ({navigation}) => ({
-    title: "BassGroovin'",
+    // title: "BassGroovin'",
+    title: navigation.state.params.location,
   });
   render() {
     const { navigate } = this.props.navigation;
