@@ -7,31 +7,29 @@ var ReactNative = require('react-native');
 var {
   View,
   Text,
-  Button,
   StyleSheet,
   TextInput,
+  Button,
   TouchableHighlight,
   ActivityIndicatorIOS
 } = ReactNative;
 
-class Main extends React.Component {
-  static navigationOptions = {
-    title: 'Bass Groove Home',
-  };
+class Concerts extends React.Component {
+  static navigationOptions = ({navigation}) => ({
+    title: "BassGroovin'",
+  });
   render() {
-    const { navigate } = this.props.navigation;
+    const { goBack } = this.props.navigation;
     return (
       <View>
-      <Text>Add Spofity OAuth Here</Text>
+        <Text>View saved concerts</Text>
       <Button
-        title="Go to the Location Page"
-        onPress={() =>
-          navigate('Location', { location: '80202' })
-        }
+        title="Go back"
+        onPress={() => goBack()}
       />
-    </View>
+      </View>
     );
   }
 }
 
-module.exports = Main;
+module.exports = Concerts;

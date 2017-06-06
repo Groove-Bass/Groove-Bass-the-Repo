@@ -19,12 +19,17 @@ class Player extends React.Component {
     title: "BassGroovin'",
   });
   render() {
-    const { goBack } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
+      <View>
+        <Text>iframe playlist & concert info here</Text>
       <Button
-        title="Go back"
-        onPress={() => goBack()}
+        title="Go to the Saved Concerts Page"
+        onPress={() =>
+          navigate('Concerts', {location: '80202'})
+        }
       />
+      </View>
     );
   }
 }

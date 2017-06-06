@@ -4,6 +4,7 @@ var ReactNative = require('react-native')
 var Main = require('./App/Components/Main')
 var Location = require('./App/Components/Location')
 var Player = require('./App/Components/Player')
+var Concerts = require('./App/Components/Concerts')
 
 var {
     AppRegistry,
@@ -26,7 +27,8 @@ var styles = StyleSheet.create({
 const GrooveBass = StackNavigator({
   Main: {screen: Main},
   Location: {screen: Location},
-  Player: {screen: Player}
+  Player: {screen: Player},
+  Concerts: {screen: Concerts}
 })
 
 AppRegistry.registerComponent('GrooveBass', () => GrooveBass)

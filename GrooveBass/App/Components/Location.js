@@ -21,12 +21,15 @@ class Location extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
+      <View>
+        <Text>Add input for Zipcode here; handle submit to API</Text>
       <Button
         title="Go to the Player Page"
         onPress={() =>
           navigate('Player', {location: '80202'})
         }
       />
+      </View>
     );
   }
 }
