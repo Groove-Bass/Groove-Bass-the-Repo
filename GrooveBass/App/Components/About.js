@@ -14,24 +14,22 @@ var {
   ActivityIndicatorIOS
 } = ReactNative;
 
-class Concerts extends React.Component {
+class About extends React.Component {
   static navigationOptions = ({navigation}) => ({
-    title: "BassGroovin' near You!",
+    title: "Bassholes",
   });
   render() {
-    const { navigate } = this.props.navigation;
+    const { goBack } = this.props.navigation;
     return (
       <View>
-        <Text>View saved concerts</Text>
+        <Text>View us in our splendor</Text>
       <Button
-        title="Go to the About Us Page"
-        onPress={() =>
-          navigate('About', {location: '80202'})
-        }
+        title="Go back"
+        onPress={() => goBack()}
       />
       </View>
     );
   }
 }
 
-module.exports = Concerts;
+module.exports = About;

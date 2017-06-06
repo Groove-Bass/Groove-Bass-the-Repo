@@ -5,6 +5,7 @@ var Main = require('./App/Components/Main')
 var Location = require('./App/Components/Location')
 var Player = require('./App/Components/Player')
 var Concerts = require('./App/Components/Concerts')
+var About = require('./App/Components/About')
 
 var {
     AppRegistry,
@@ -28,7 +29,8 @@ const GrooveBass = StackNavigator({
   Main: {screen: Main},
   Location: {screen: Location},
   Player: {screen: Player},
-  Concerts: {screen: Concerts}
+  Concerts: {screen: Concerts},
+  About: {screen: About}
 })
 
 AppRegistry.registerComponent('GrooveBass', () => GrooveBass)
