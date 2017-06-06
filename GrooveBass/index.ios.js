@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-var Main = require('./App/Components/Main')
 var ReactNative = require('react-native')
+
+var Main = require('./App/Components/Main')
+var Location = require('./App/Components/Location')
 
 var {
     AppRegistry,
@@ -21,7 +23,8 @@ var styles = StyleSheet.create({
 })
 
 const GrooveBass = StackNavigator({
-  Main: {screen: Main}
+  Main: {screen: Main},
+  Location: {screen: Location}
 })
 
 AppRegistry.registerComponent('GrooveBass', () => GrooveBass)

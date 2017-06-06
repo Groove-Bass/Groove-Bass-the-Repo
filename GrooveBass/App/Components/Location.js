@@ -7,28 +7,26 @@ var ReactNative = require('react-native');
 var {
   View,
   Text,
-  Button,
   StyleSheet,
   TextInput,
+  Button,
   TouchableHighlight,
   ActivityIndicatorIOS
 } = ReactNative;
 
-class Main extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome to the Bass Home Page',
-  };
+class Location extends React.Component {
+  static navigationOptions = ({navigation}) => ({
+    title: navigation.state.params.location,
+  });
   render() {
-    const { navigate } = this.props.navigation;
+    const { goBack } = this.props.navigation;
     return (
       <Button
-        title="Go to the Location Page"
-        onPress={() =>
-          navigate('Location', { location: '80202' })
-        }
+        title="Go back"
+        onPress={() => goBack()}
       />
     );
   }
 }
 
-module.exports = Main;
+module.exports = Location;
