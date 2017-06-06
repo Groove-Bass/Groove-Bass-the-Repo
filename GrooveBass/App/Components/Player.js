@@ -14,21 +14,19 @@ var {
   ActivityIndicatorIOS
 } = ReactNative;
 
-class Location extends React.Component {
+class Player extends React.Component {
   static navigationOptions = ({navigation}) => ({
-    title: navigation.state.params.location,
+    title: "BassGroovin'",
   });
   render() {
-    const { navigate } = this.props.navigation;
+    const { goBack } = this.props.navigation;
     return (
       <Button
-        title="Go to the Player Page"
-        onPress={() =>
-          navigate('Player', {location: '80202'})
-        }
+        title="Go back"
+        onPress={() => goBack()}
       />
     );
   }
 }
 
-module.exports = Location;
+module.exports = Player;
