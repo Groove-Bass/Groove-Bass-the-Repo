@@ -2,8 +2,20 @@
 var jamapi = {
   getMusic (location, radius) {
     var jamBaseData = []
-    console.log(Date.now())
-    var url = `http://api.jambase.com/events?zipCode=${location}&radius=${radius}&startDate=2017-06-08T20%3A00%3A00&endDate=2017-06-09T20%3A00%3A00&page=0&api_key=62uety22hfk9ppf6ttpxgqkw`
+    var startDate = new Date();
+    var dd = startDate.getDate();
+    var mm = startDate.getMonth()+1; //January is 0!
+
+    var yyyy = startDate.getFullYear();
+    if(dd<10){
+      dd='0'+dd;
+    }
+    if(mm<10){
+      mm='0'+mm;
+    }
+    var startDate = yyyy+'-'+mm+'-'+dd;
+    var endDate ='2017-06-14';
+    var url = `http://api.jambase.com/events?zipCode=${location}&radius=${radius}&startDate=${startDate}T20%3A00%3A00&endDate=${endDate}T20%3A00%3A00&page=0&api_key=62uety22hfk9ppf6ttpxgqkw`
     console.log(url)
     return fetch(url).then(res => res.json())
     .then((jsonRes) => {
