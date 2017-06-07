@@ -78,7 +78,7 @@ class Main extends React.Component {
   submitArtist(){
     sapi.getArtist(this.state.artist)
     .then((res) => {
-      this.props.navigation.navigate('Player', {artist: res.artists})
+      this.props.navigation.navigate('Player', {artist: res})
     })
   }
   render() {
