@@ -1,7 +1,7 @@
 // var React = require('react-native');
 import React, { Component } from 'react';
 var ReactNative = require('react-native');
-var api = require('../Utils/api');
+var jamapi = require('../Utils/jamapi');
 // var Dashboard = require('./Dashboard');
 
 var {
@@ -58,9 +58,6 @@ var styles = StyleSheet.create({
   },
 });
 
-
-
-
 class Location extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: 'Enter Location',
@@ -78,24 +75,15 @@ class Location extends React.Component {
     })
   }
   handleSubmit(){
-    // TODO: addd acutaly api here
-    api.getConcerts(this.state.location)
-         .then((res) => {
-           if(res.message === 'Not Found'){
-             this.setState({
-               error: 'Location not found',
-             })
-           } else {
-             this.props.navigation.navigate('Player', {'location': this.state.location})
-             this.setState({
-               error: false,
-               location: ''
-             })
-           }
-         })
-         .catch ((err) => {
+    console.log('hit submit');
+        jamapi.getMusic(this.state.location)
+        .then((data) => {
+          console.log('data');
+          console.log(data.Events);
+        })
+        .catch ((err) => {
            console.log('error', err)
-         })
+        })
 
   }
   render() {
