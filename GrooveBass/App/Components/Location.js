@@ -57,73 +57,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   },
 });
-//
-// class Location extends React.Component {
-//   static navigationOptions = ({navigation}) => ({
-//       title: 'Enter Location',
-//   })
-//   constructor(props){
-//     super(props);
-//     this.state = {
-//       zipcode: '',
-//       // radius: '5',
-//       // startDate: '2017-06-06',
-//       // endDate: '2017-06-10',
-//       error: false
-//     }
-//   }
-//   handleChange(event){
-//     this.setState({
-//       zipcode: event.nativeEvent.text,
-//       // radius: event.nativeEvent.text,
-//       // startDate: event.nativeEvent.text,
-//       // endDate: event.nativeEvent.text
-//     })
-//   }
-//   handleSubmit(){
-//     console.log('hit submit');
-//     jamapi.getMusic(this.state.zipcode)
-//     .then((res) => {
-//       console.log('hit then');
-//       if (res.message === "Not Found") {
-//         this.setState({
-//           error: 'Invalid zipcode'
-//         })
-//       } else {
-//         this.props.navigation.navigate('Player', {'zipcode': this.state.zipcode})
-//         this.setState({
-//           error: false,
-//           zipcode: ''
-//         })
-//       }
-//     })
-//     .catch((error) => {
-//       console.log('API call error');
-//       alert(error.message)
-//     })
-//   }
-//
-//
-//
-//   render() {
-//     const { navigate } = this.props.navigation;
-//     return (
-//       <View style={styles.mainContainer}>
-//         <Text style={styles.title}> Find Local Shows</Text>
-//         <TextInput
-//           style={styles.searchInput}
-//           value={this.state.zipcode}
-//           onChange={this.handleChange.bind(this)} />
-//       <TouchableHighlight
-//         style={styles.button}
-//         onPress={this.handleSubmit.bind(this)}
-//         underlayColor="white">
-//         <Text style={styles.buttonText}> Go Fishin</Text>
-//       </TouchableHighlight>
-//       </View>
-//     );
-//   }
-// }
+
 class Location extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: 'Enter Location',
