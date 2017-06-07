@@ -15,12 +15,22 @@ var {
   Button,
   TouchableHighlight,
   ActivityIndicatorIOS,
+  ScrollView
 } = ReactNative;
 
 import { Form,
   Separator,InputField, LinkField,
   SwitchField, PickerField,DatePickerField,TimePickerField
 } from 'react-native-form-generator';
+
+// export class FormView extends React.Component{
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       formData:{}
+//     }
+//   }
+// }
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -115,12 +125,11 @@ class Location extends React.Component {
     console.log(this.refs.registrationForm.values)
     var location = this.refs.registrationForm.values.location
     var radius = this.refs.registrationForm.values.radius
-    var startDate = this.refs.registrationForm.values.startDate
-    var endDate = this.refs.registrationForm.values.endDate
-        jamapi.getMusic(location, radius, startDate, endDate)
+
+        jamapi.getMusic(location, radius)
         .then((data) => {
           console.log('data');
-          console.log(data.Events);
+
         })
         .catch ((err) => {
            console.log('error', err)
@@ -132,6 +141,7 @@ class Location extends React.Component {
     return (
       <View style={styles.container}>
       <Form ref='registrationForm'
+
         onChange={this.handleFormChange.bind(this)}
         label="Location Information">
 
@@ -145,15 +155,7 @@ class Location extends React.Component {
              label='Radius'
              placeholder='radius'/>
 
-       <DatePickerField
-            ref='startDate'
-            minimumDate={new Date()}
-            label='Start Date' />
 
-        <DatePickerField
-             ref='endDate'
-             minimumDate={new Date()}
-             label='End Date' />
       </Form>
 
            <TouchableHighlight
@@ -164,6 +166,7 @@ class Location extends React.Component {
            </TouchableHighlight>
 
       </View>
+
     );
   }
 }
@@ -175,4 +178,7 @@ class Location extends React.Component {
 //   }
 // />
 
+
+// <ScrollView keyboardShouldPersistTaps="always" style={{paddingLeft:10,paddingRight:10, height:200}}>
+  // </ScrollView>
 module.exports = Location;
