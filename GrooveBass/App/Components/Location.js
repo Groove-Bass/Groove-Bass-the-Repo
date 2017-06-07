@@ -127,14 +127,22 @@ class Location extends React.Component {
     var radius = this.refs.registrationForm.values.radius
 
         jamapi.getMusic(location, radius)
-        .then((data) => {
-          console.log('data');
-
-        })
-        .catch ((err) => {
-           console.log('error', err)
-        })
-
+        .then((res) => {
+          if(res.message === 'Not Found'){
+            this.setState({
+              error: 'Location not found',
+            })
++         } else {
+            this.props.navigation.navigate('Player', {'data': this.state.location})
+            this.setState({
++             error: false,
++             location: ''
++           })
++        }
++      })
++      .catch ((err) => {
++         console.log('error', err)
++       })
   }
   render() {
     const { navigate } = this.props.navigation;

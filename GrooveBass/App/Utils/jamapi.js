@@ -1,7 +1,7 @@
 
 var jamapi = {
   getMusic (location, radius) {
-    var jamBaseData = []
+    var JamBaseData = []
     var startDate = new Date();
     var dd = startDate.getDate();
     var mm = startDate.getMonth()+1; //January is 0!
@@ -21,11 +21,11 @@ var jamapi = {
     .then((jsonRes) => {
       for (var i=0; i<(jsonRes.Events).length; i++){
         for (var j=0; j<(jsonRes.Events[i].Artists).length; j++){
-          jamBaseData.push({artistName: jsonRes.Events[i].Artists[j].Name, date: jsonRes.Events[i].Date, ticketUrl: jsonRes.Events[i].TicketUrl, venueName: jsonRes.Events[i].Venue.Name, address: jsonRes.Events[i].Venue.Address, city: jsonRes.Events[i].Venue.City, state: jsonRes.Events[i].Venue.StateCode, zipcode: jsonRes.Events[i].Venue.ZipCode})
+          JamBaseData.push({artistName: jsonRes.Events[i].Artists[j].Name, date: jsonRes.Events[i].Date, ticketUrl: jsonRes.Events[i].TicketUrl, venueName: jsonRes.Events[i].Venue.Name, address: jsonRes.Events[i].Venue.Address, city: jsonRes.Events[i].Venue.City, state: jsonRes.Events[i].Venue.StateCode, zipcode: jsonRes.Events[i].Venue.ZipCode})
         }
       }
-      console.log(jamBaseData)
-      return jamBaseData
+      console.log(JamBaseData)
+      return JamBaseData
     })
   }
 }
