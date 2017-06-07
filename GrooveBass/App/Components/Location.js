@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 var ReactNative = require('react-native');
 var jamapi = require('../Utils/jamapi');
 // var Dashboard = require('./Dashboard');
+var sapi = require('../Utils/spotifyapi');
+
 
 var {
   View,
@@ -85,6 +87,14 @@ class Location extends React.Component {
            console.log('error', err)
         })
 
+  }
+  submitArtist(){
+    sapi.getArtist()
+    .then((res) => {
+      console.log('hi from here.')
+      console.log(res);
+      // this.props.navigation.navigate('Player', {artist: res})
+    })
   }
   render() {
     const { navigate } = this.props.navigation;

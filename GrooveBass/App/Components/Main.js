@@ -70,32 +70,12 @@ class Main extends React.Component {
       error: false
     }
   }
-  artistChange(event){
-    this.setState({
-      artist: event.nativeEvent.text
-    })
-  }
-  submitArtist(){
-    sapi.getArtist(this.state.artist)
-    .then((res) => {
-      this.props.navigation.navigate('Player', {artist: res})
-    })
-  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View>
       <Text>Add Spofity OAuth Here</Text>
-      <TextInput
-        style={styles.searchInput}
-        value={this.state.artist}
-        onChange={this.artistChange.bind(this)} />
-      <TouchableHighlight
-        style={styles.button}
-        onPress={this.submitArtist.bind(this)}
-        underlayColor="white">
-        <Text>SEARCH ARTIST</Text>
-      </TouchableHighlight>
       <Text></Text>
       <Button
         title="Go to the Location Page"

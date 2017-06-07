@@ -1,11 +1,37 @@
-var sapi = {
+var spotifyapi = {
   // TODO: write spotifybase api
-  getArtist(artist) {
-    console.log(artist);
-    // let url2 = "https://api.spotify.com/v1/browse/new-releases?access_token=BQD1RUlG3uvpukIhKPf8qFGQ84G8kJrEPEwH47SjvhmCgyn4x60RIgmbddXTvIn3UY9tsRNgfAK2d-XeTGi8B_t4kSFBTWxiTeOKEiBBD15HP-kcteXazn4i0kaZmT8GyigCHE5e_jeBFH3jT1F5bSnG"
-    let url = "https://api.spotify.com/v1/artists/2QoU3awHVdcHS8LrZEKvSM/top-tracks?country=US&access_token=BQCAb0VTbLTLy7Ij4IHf0rTMooKAS677_kXZaBFKFYu8Clt4CaFDbDeECdrV4t1WzUdpstvMCZgH5I23N7mDx3sZLS4jV4AmiSJohUkgTUxRiavt9-Q8JCyR2skrTlmAMmuhlGY14q95-oJMyOt8GE6o"
-    return fetch(url).then((res) => res.json())
+  getArtist() {
+    let artistArray = [
+      {
+        id: 1,
+        name: 'Wilco'
+      },
+      {
+        id: 2,
+        name: 'Broken Social Scene'
+      },
+      {
+        id: 3,
+        name: 'Bob Dylan'
+      }
+    ]
+
+    var formattedArtists = []
+
+    let artistSpotify = artistArray.map((item, index) => {
+      let url = `https://api.spotify.com/v1/search?q=${item['name']}&type=artist&access_token=BQBswT6eousYphchAU450SafZFkJGO4-voh4Jx4y_tmKx5qNXAMMuiGVDAuks7fcP-5JoE0G3-amR4FAIAtnkEGX33Hk6oXUYtTezTP7FK8lXyD2hVwkA-nw_HQ9YRodCbHJAu_Jag_y9q_svmSiN0j7`
+      return fetch(url).then((jsonRes) => jsonRes)
+      // .then((jsonRes) => {
+      //   formattedArtists.push(jsonRes.artists.items[0])
+        // return formattedArtists
+      // })
+    })
+    console.log(formattedArtists);
+    return formattedArtists
+    console.log('function ran');
+    // console.log(formattedArtists);
+    // return formattedArtists
   }
 }
 
-module.exports = sapi
+module.exports = spotifyapi
