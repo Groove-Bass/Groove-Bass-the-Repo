@@ -31,6 +31,15 @@ var spotifyapi = {
     console.log('function ran');
     // console.log(formattedArtists);
     // return formattedArtists
+
+    // submitArtist(){
+    //   sapi.getArtist()
+    //   .then((res) => {
+    //     console.log('hi from here.')
+    //     console.log(res);
+    //     // this.props.navigation.navigate('Player', {artist: res})
+    //   })
+    // }
   }
 }
 

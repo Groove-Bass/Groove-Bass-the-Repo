@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 var ReactNative = require('react-native');
 var jamapi = require('../Utils/jamapi');
+
+
+
 // var Dashboard = require('./Dashboard');
 var sapi = require('../Utils/spotifyapi');
 
@@ -14,7 +17,22 @@ var {
   Button,
   TouchableHighlight,
   ActivityIndicatorIOS,
+  ScrollView
 } = ReactNative;
+
+import { Form,
+  Separator,InputField, LinkField,
+  SwitchField, PickerField,DatePickerField,TimePickerField
+} from 'react-native-form-generator';
+
+// export class FormView extends React.Component{
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       formData:{}
+//     }
+//   }
+// }
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -58,69 +76,111 @@ var styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+  container: {
+    justifyContent: 'center',
+    marginTop: 50,
+    padding: 20,
+    backgroundColor: '#ffffff',
+  }
 });
+
+
 
 class Location extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: 'Enter Location',
   });
-  constructor(props){
-    super(props);
-    this.state = {
-      location: '',
-      error: false
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     location: '',
+  //     radius: '',
+  //     error: false
+  //   }
+  // }
+  // handleChange(event){
+  //   this.setState({
+  //     location: event.nativeEvent.text,
+  //     radius: event.nativeEvent.text
+  //   })
+  // }
+  handleFormChange(formData){
+      /*
+      formData will contain all the values of the form,
+      in this example.
+
+      formData = {
+      first_name:"",
+      last_name:"",
+      gender: '',
+      birthday: Date,
+      has_accepted_conditions: bool
+      }
+      */
+
+      this.setState({formData:formData})
+      this.props.onFormChange && this.props.onFormChange(formData);
     }
-  }
-  handleChange(event){
-    this.setState({
-      location: event.nativeEvent.text
-    })
-  }
+
   handleSubmit(){
     console.log('hit submit');
-        jamapi.getMusic(this.state.location)
+    console.log(this.refs.registrationForm.values)
+    var location = this.refs.registrationForm.values.location
+    var radius = this.refs.registrationForm.values.radius
+
+        jamapi.getMusic(location, radius)
         .then((data) => {
           console.log('data');
-          console.log(data.Events);
+
         })
         .catch ((err) => {
            console.log('error', err)
         })
 
   }
-  submitArtist(){
-    sapi.getArtist()
-    .then((res) => {
-      console.log('hi from here.')
-      console.log(res);
-      // this.props.navigation.navigate('Player', {artist: res})
-    })
-  }
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View>
-        <Text>Add input for Zipcode here; handle submit to API</Text>
-        <Text style={styles.title}> Enter your Zip Code </Text>
-         <TextInput
-           style={styles.searchInput}
-           value={this.state.location}
-           onChange={this.handleChange.bind(this)} />
+      <View style={styles.container}>
+      <Form ref='registrationForm'
+
+        onChange={this.handleFormChange.bind(this)}
+        label="Location Information">
+
+        <InputField
+             ref='location'
+             label='Location'
+             placeholder='Zipcode'/>
+
+        <InputField
+             ref='radius'
+             label='Radius'
+             placeholder='radius'/>
+
+
+      </Form>
+
            <TouchableHighlight
              style={styles.button}
              onPress={this.handleSubmit.bind(this)}
              underlayColor="white">
              <Text style={styles.buttonText}> SEARCH </Text>
            </TouchableHighlight>
-        <Button
-          title="Search your location"
-          onPress={() =>
-            navigate('Player', {'location': this.state.location})
-          }
-        />
+
       </View>
+
     );
   }
 }
 
+// <Button
+//   title="Search your location"
+//   onPress={() =>
+//     navigate('Player', {'location': this.state.location},{'radius': this.state.radius})
+//   }
+// />
+
+
+// <ScrollView keyboardShouldPersistTaps="always" style={{paddingLeft:10,paddingRight:10, height:200}}>
+  // </ScrollView>
 module.exports = Location;
