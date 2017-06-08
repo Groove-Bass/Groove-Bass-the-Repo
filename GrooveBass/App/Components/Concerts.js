@@ -11,6 +11,7 @@ var {
   TextInput,
   Button,
   ScrollView,
+  Linking,
   TouchableHighlight,
   ActivityIndicatorIOS
 } = ReactNative;
@@ -38,7 +39,7 @@ var styles = StyleSheet.create({
 
 class Concerts extends React.Component {
     getRowTitle(concert, item){
-        // item = (item === 'artistName') ? item.replace('_', ' ') : item;
+        item = (item === 'venueName') ? item= 'venue' : item;
         return item[0] ? item[0].toUpperCase() + item.slice(1) : item;
     }
 
@@ -69,12 +70,26 @@ class Concerts extends React.Component {
     }
 
     var list = []
-    var concertDetails = ['artists', 'address', 'date', 'city', 'state', 'ticketUrl', 'venueName', 'zipcode'];
+    var concertDetails = ['artists', 'venueName',  'date', 'address', 'city', 'ticketUrl'];
       for (var i = 0; i < concertInfo.length; i++) {
            var currentList = concertDetails.map((item, index) => {
                if(!concertInfo[i][item]){
                    return <View key={index}/>
                } else {
+                 if (item === 'ticketUrl') {
+                   let currentURL = concertInfo[i][item]
+                   console.log(currentURL);
+                   return (
+                     <View key={index}>
+                         <View style={styles.rowContainer}>
+                         <Text style={{color: 'blue'}}
+                              onPress={() => Linking.openURL(currentURL)}>
+                              Purchase Tickets Here
+                        </Text>
+                      </View>
+                    </View>
+                  )
+                } else {
                    return (
                        <View key={index}>
                            <View style={styles.rowContainer}>
@@ -84,8 +99,10 @@ class Concerts extends React.Component {
                        </View>
                    )
                }
+             }
            })
            list.push(currentList)
+           currentList = ""
            list.push(<View style={{ borderBottomColor: 'black', borderBottomWidth: 1}}></View>)
          }
 
