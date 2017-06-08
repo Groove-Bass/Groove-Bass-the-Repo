@@ -19,20 +19,20 @@ var {
 
 class Main extends React.Component {
   static navigationOptions = {
-    title: 'GrooveBass Home',
+    title: 'Home',
   };
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.mainContainer}>
-      <Text style={styles.title}>Welcome to GrooveBass!</Text>
       <Image style={{flex:1, height: '50%', width: '50%', alignSelf: 'center'}} source={require('./Glogo.png')} resizeMode="contain"
       />
-      <Text style={styles.container}>Your one-stop shop for finding local concerts and creating awesome playlists!</Text>
+      <Text style={styles.title}> GrooveBass</Text>
+      <Text style={styles.container}>Your one-stop shop for finding local concerts and creating awesome playlists</Text>
       <TouchableHighlight
         style={styles.button}
           onPress={() =>
-              navigate('Location', {location: '80202'})
+            navigate('Location', {location: '80202'})
             }
           underlayColor="white">
           <Text style={styles.buttonText}> Fish for Shows</Text>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#00cecb'
   },
   title: {
-    fontSize: 25,
+    fontSize: 35,
     textAlign: 'center',
     color: '#ffed66',
     fontWeight: 'bold'
