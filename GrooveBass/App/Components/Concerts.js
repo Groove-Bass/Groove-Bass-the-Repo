@@ -40,6 +40,7 @@ var styles = StyleSheet.create({
 class Concerts extends React.Component {
     getRowTitle(concert, item){
         item = (item === 'venueName') ? item= 'venue' : item;
+        item = (item === 'showDate') ? item = 'date' :item;
         return item[0] ? item[0].toUpperCase() + item.slice(1) : item;
     }
 
@@ -58,6 +59,7 @@ class Concerts extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     var concertInfo = this.state.concert
+    // ADD useable names for population on the concerts list
     var artists = ""
     for (var i = 0; i < concertInfo.length; i++) {
       for (var j = 0; j < concertInfo[i].artistName.length; j++){
@@ -68,9 +70,21 @@ class Concerts extends React.Component {
       concertInfo[i]['artists'] = artists
       artists = []
     }
+    // Add useable date formate for concerts list    var artists = ""
+    let newdate = ""
+        for (var i = 0; i < concertInfo.length; i++) {
+            newdate = concertInfo[i].date.substr(0, concertInfo[i].date.length-9)
+            let startDate = newdate.substr(5)
+            let endDate = '-' + newdate.substr(0, 4)
+            let fullDate = startDate + endDate
+            concertInfo[i]['showDate'] = fullDate
+            newdate = []
+          }
+
+
 
     var list = []
-    var concertDetails = ['artists', 'venueName',  'date', 'address', 'city', 'ticketUrl'];
+    var concertDetails = ['artists', 'venueName',  'showDate', 'address', 'city', 'ticketUrl'];
       for (var i = 0; i < concertInfo.length; i++) {
            var currentList = concertDetails.map((item, index) => {
                if(!concertInfo[i][item]){
@@ -78,7 +92,6 @@ class Concerts extends React.Component {
                } else {
                  if (item === 'ticketUrl') {
                    let currentURL = concertInfo[i][item]
-                   console.log(currentURL);
                    return (
                      <View key={index}>
                          <View style={styles.rowContainer}>
