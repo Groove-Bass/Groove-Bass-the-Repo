@@ -10,7 +10,8 @@ var {
   Button,
   TouchableHighlight,
   ActivityIndicator,
-  ScrollView
+  ScrollView,
+  Image
 } = ReactNative;
 
 import { Form,
@@ -22,16 +23,15 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
-    marginTop: 65,
     flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#48BBEC'
+    backgroundColor: '#00cecb'
   },
   title: {
-    marginBottom: 20,
+    marginBottom: 15,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: '#ffed66',
+    fontWeight: 'bold'
   },
   searchInput: {
     height: 50,
@@ -45,34 +45,30 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
+    color: '#ff5e5b',
+    alignSelf: 'center',
+    fontWeight: 'bold'
   },
   button: {
-    height: 45,
+    height: 40,
     flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'white',
     borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
+    borderRadius: 5,
+    marginBottom: 5,
+    marginTop: 20,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
   container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    backgroundColor: '#ffffff',
+    color:'#334d4d'
   }
 });
 
-
-
 class Location extends React.Component {
   static navigationOptions = ({navigation}) => ({
-    title: 'Enter Location',
+    title: 'Location',
   });
     constructor(props){
      super(props);
@@ -113,43 +109,38 @@ class Location extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <View style={styles.mainContainer}>
         <Form ref='registrationForm'
           onChange={this.handleFormChange.bind(this)}
           label="Location Information">
-        <InputField
+        <InputField style={styles.container}
            ref='location'
            label='Location'
-           placeholder='Zipcode'/>
-        <InputField
+           placeholder='zipcode'/>
+        <InputField style={styles.container}
            ref='radius'
-           label='Radius'
-           placeholder='radius'/>
+           label='Search Radius'
+           placeholder='(in miles)'/>
       </Form>
        <TouchableHighlight
            style={styles.button}
            onPress={this.handleSubmit.bind(this)}
            underlayColor="white">
-           <Text style={styles.buttonText}> SEARCH </Text>
+           <Text style={styles.buttonText}> Cast Your Line </Text>
        </TouchableHighlight>
        <ActivityIndicator
           animating={this.state.isLoading}
           color="#111"
-          size="large"></ActivityIndicator>
+          size="large">
+        </ActivityIndicator>
+        <Image
+          style={{flex:1, height: '50%', width: '50%', alignSelf: 'center'}} source={require('./bobber.png')} resizeMode="contain"
+        />
       </View>
+
 
     );
   }
 }
 
-// <Button
-//   title="Search your location"
-//   onPress={() =>
-//     navigate('Player', {'location': this.state.location},{'radius': this.state.radius})
-//   }
-// />
-
-
-// <ScrollView keyboardShouldPersistTaps="always" style={{paddingLeft:10,paddingRight:10, height:200}}>
-  // </ScrollView>
 module.exports = Location;
