@@ -63,11 +63,10 @@ class Concerts extends React.Component {
         artists += concertInfo[i].artistName[j].Name
         artists += ", "
       }
+      artists = artists.substr(0, artists.length-2)
       concertInfo[i]['artists'] = artists
       artists = []
     }
-    console.log('new info?');
-    console.log(concertInfo);
 
     var list = []
     var concertDetails = ['artists', 'address', 'date', 'city', 'state', 'ticketUrl', 'venueName', 'zipcode'];
@@ -75,9 +74,7 @@ class Concerts extends React.Component {
            var currentList = concertDetails.map((item, index) => {
                if(!concertInfo[i][item]){
                    return <View key={index}/>
-                  //  console.log('not a thing');
                } else {
-                  //  console.log('exists', concertInfo[i][item]);
                    return (
                        <View key={index}>
                            <View style={styles.rowContainer}>
