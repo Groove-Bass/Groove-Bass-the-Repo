@@ -10,7 +10,8 @@ var {
   Button,
   TouchableHighlight,
   ActivityIndicator,
-  ScrollView
+  ScrollView,
+  Image
 } = ReactNative;
 
 import { Form,
@@ -134,8 +135,12 @@ class Location extends React.Component {
        <ActivityIndicator
           animating={this.state.isLoading}
           color="#111"
-          size="large"></ActivityIndicator>
+          size="large">
+        </ActivityIndicator>
+        <Image style={{flex:1, height: '50%', width: '50%', alignSelf: 'center'}} source={require('./bobber.png')} resizeMode="contain"
+        />
       </View>
+
 
     );
   }

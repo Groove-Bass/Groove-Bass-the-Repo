@@ -4,6 +4,8 @@ var ReactNative = require('react-native');
 // var api = require('../Utils/api');
 // var Dashboard = require('./Dashboard');
 
+// var pic = {src:'./Glogo.png'}
+
 var {
   View,
   Text,
@@ -11,7 +13,8 @@ var {
   StyleSheet,
   TextInput,
   TouchableHighlight,
-  ActivityIndicatorIOS
+  ActivityIndicatorIOS,
+  Image
 } = ReactNative;
 
 class Main extends React.Component {
@@ -23,6 +26,8 @@ class Main extends React.Component {
     return (
       <View style={styles.mainContainer}>
       <Text style={styles.title}>Welcome to GrooveBass!</Text>
+      <Image style={{flex:1, height: '50%', width: '50%', alignSelf: 'center'}} source={require('./Glogo.png')} resizeMode="contain"
+      />
       <Text style={styles.container}>Your one-stop shop for finding local concerts and creating awesome playlists!</Text>
       <TouchableHighlight
         style={styles.button}
@@ -60,19 +65,18 @@ const styles = StyleSheet.create({
   },
   container: {
     justifyContent: 'center',
-    marginTop: 50,
     padding: 20,
     textAlign: 'center',
-    color:'#334d4d'
+    color:'#334d4d',
+    fontSize: 18
   },
   mainContainer: {
     flex: 1,
-    padding: 30,
+    padding: 20,
     flexDirection: 'column',
     backgroundColor: '#00cecb'
   },
   title: {
-    marginBottom: 15,
     fontSize: 25,
     textAlign: 'center',
     color: '#ffed66',
