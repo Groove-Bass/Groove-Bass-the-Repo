@@ -22,34 +22,59 @@ var {
 var styles = StyleSheet.create({
     container: {
       flex: 1,
-      // position: 'absolute'
+      textAlign: 'center',
+      color:'#334d4d'
+    },
+    mainContainer: {
+      flex: 1,
+      padding: 10,
+      flexDirection: 'column',
+      backgroundColor: '#00cecb'
     },
     buttonText: {
-        fontSize: 18,
-        color: 'white',
-        alignSelf: 'center'
+      fontSize: 18,
+      color: '#ff5e5b',
+      alignSelf: 'center',
+      fontWeight: 'bold'
     },
     rowContainer: {
-        padding: 10
+      // padding: 10,
+      color:'#334d4d'
     },
     rowTitle: {
-        color: '#48BBEC',
-        fontSize: 16
+      color:'#ffed66',
+      fontSize: 16,
+      fontWeight: 'bold'
     },
     rowContent: {
-        fontSize: 19
+      fontSize: 19,
+      color:'#334d4d'
     },
-    stickyHeader: {
-      position: 'relative',
-      top: 91
-    },
-    listContainer: {
-      position: 'relative',
-      top: 151
-    }
+  stickyHeader: {
+    backgroundColor: '#00cecb',
+    position: 'relative',
+    top: 91
+  },
+  listContainer: {
+    backgroundColor: '#00cecb',
+    position: 'relative',
+    top: 100
+  },
+  button: {
+    height: 40,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 5,
+    marginTop: 5,
+    paddingLeft: 8,
+    paddingRight: 8,
+    alignSelf: 'center',
+    justifyContent: 'center'
+  }
 });
-
-
 
 class Concerts extends React.Component {
     getRowTitle(concert, item){
@@ -80,7 +105,6 @@ class Concerts extends React.Component {
    sapi.getArtist(this.state.artist)
    .then((res) => {
      this.setState({preview:res.preview_url})
-    //  this.state.preview = res.preview_url
      return true;
    })
    .catch ((err) => {
@@ -88,7 +112,6 @@ class Concerts extends React.Component {
       isLoading: false
     })
  }
-
 
   render() {
     console.log('preivew');
@@ -127,18 +150,18 @@ class Concerts extends React.Component {
                  if (item === 'ticketUrl') {
                    let currentURL = concertInfo[i][item]
                    return (
-                     <View key={index}>
+                     <View key={index} style={styles.mainContainer}>
                          <View style={styles.rowContainer}>
-                         <Text style={{color: 'blue'}}
-                              onPress={() => Linking.openURL(currentURL)}>
-                              Purchase Tickets Here
-                        </Text>
+                         <TouchableHighlight style={styles.button}
+                            onPress={() => Linking.openURL(currentURL)} underlayColor="white">
+                            <Text style={styles.buttonText}>Buy Tickets</Text>
+                          </TouchableHighlight>
                       </View>
                     </View>
                   )
                 } else {
                    return (
-                       <View key={index}>
+                       <View key={index} style={styles.mainContainer}>
                            <View style={styles.rowContainer}>
                                <Text style={styles.rowTitle}> {this.getRowTitle(concertInfo[i], item)} </Text>
                                <Text style={styles.rowContent}> {concertInfo[i][item]} </Text>
@@ -149,23 +172,11 @@ class Concerts extends React.Component {
              }
            })
            list.push(currentList)
-          //  list.push(<View>
-          //    <PlayerUI />
-          //  </View>)
            currentList = ""
            list.push(<View style={{ borderBottomColor: 'black', borderBottomWidth: 1}}></View>)
-
          }
-    // //end jambase begin spotifyapi
-    // sapi.getArtist(this.state.artist)
-    // .then((res) => {
-    //   // this.setState({preview:res.preview_url})
-    //   this.state.preview = res.preview_url
-    //   return true;
-    // })
-
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.mainContainer}>
           <View style={styles.stickyHeader}>
           <Player url={this.state.preview} />
           {/* <Player url= {'https://p.scdn.co/mp3-preview/aa88c40463c37cce4fee2cea1925e42fd1aa83b0?cid=3061c2868ac84b9fb2bacebfae61eba3'} /> */}
@@ -174,12 +185,8 @@ class Concerts extends React.Component {
             {list}
           </View>
         </ScrollView>
-
-        // <PlayerUI />
     )
   }
 };
-
-
 
 module.exports = Concerts;
