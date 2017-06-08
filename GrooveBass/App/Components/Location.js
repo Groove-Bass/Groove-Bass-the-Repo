@@ -9,7 +9,7 @@ var {
   TextInput,
   Button,
   TouchableHighlight,
-  ActivityIndicatorIOS,
+  ActivityIndicator,
   ScrollView
 } = ReactNative;
 
@@ -80,6 +80,7 @@ class Location extends React.Component {
        error: false,
        formData: '',
        concertData: '',
+       isLoading: false,
      }
    }
 
@@ -89,8 +90,10 @@ class Location extends React.Component {
     }
 
   handleSubmit(){
-    console.log('hit submit');
-    // console.log(this.refs.registrationForm.values)
+    this.setState({
+     isLoading: true,
+     error: false
+   })
     var location = this.refs.registrationForm.values.location
     var radius = this.refs.registrationForm.values.radius
 
@@ -100,6 +103,7 @@ class Location extends React.Component {
             this.props.navigation.navigate('Concerts', {concertData: this.state.concertData})
             this.setState({
              error: false,
+             isLoading: false
            })
         })
       .catch ((err) => {
@@ -129,6 +133,10 @@ class Location extends React.Component {
            keyboardShouldPersistTaps='always'>
            <Text style={styles.buttonText}> SEARCH </Text>
        </TouchableHighlight>
+       <ActivityIndicator
+          animating={this.state.isLoading}
+          color="#111"
+          size="large"></ActivityIndicator>
       </View>
 
     );
