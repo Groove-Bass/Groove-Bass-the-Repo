@@ -4,8 +4,8 @@ var spotifyapi = {
   //   var
   // }
 
-
-  getArtist(artists) {
+  getArtist (artists) {
+    console.log('hit the spot api')
     // let artistArray = [
     //   {
     //     id: 1,
@@ -21,7 +21,7 @@ var spotifyapi = {
     //   }
     // ]
 
-    console.log(artists);
+    console.log(artists)
 
     var formattedArtists = []
 
@@ -37,7 +37,7 @@ var spotifyapi = {
     // })
 
     for (var i = 0; i < artists.length; i++) {
-      let url = `https://api.spotify.com/v1/search?q=${artists[i]['Name']}&type=artist&access_token=BQB8PastGEkj5JKUig6RtFnLtKG5W-L5_wqLCFYVem6PB2aAF79RhycUVno7tm_xq4hA9adPpMKyGJfgi9t2GMHaiXwSvVIEKkPKy9L_vz06mKb2Yauijc9l8fo-6k0YEYjVX4xub6FTtWSosCQmf73A`
+      let url = `https://api.spotify.com/v1/search?q=${artists[i]['Name']}&type=artist&access_token=BQC12V3CA8jxi7GY7EwTqnDzBetlymr_5Q71aVvDk_GYs8CnL823ik0WQZihbPhHaxDSJg00vKwqt0Ge9pdwGP72KDJUCYWWXeUSqWScnYGp32HrVF5qby4J6jim0q2S2ddBFmQEODDtCjG-yBvM2jk7`
 
       return fetch(url).then((res) => res.json())
       .then((jsonRes) => {
@@ -46,11 +46,11 @@ var spotifyapi = {
       })
       .then((data) => {
         // console.log(data, 'data');
-        let url2 = `https://api.spotify.com/v1/artists/${data.id}/top-tracks?country=SE&access_token=BQB8PastGEkj5JKUig6RtFnLtKG5W-L5_wqLCFYVem6PB2aAF79RhycUVno7tm_xq4hA9adPpMKyGJfgi9t2GMHaiXwSvVIEKkPKy9L_vz06mKb2Yauijc9l8fo-6k0YEYjVX4xub6FTtWSosCQmf73A`
+        let url2 = `https://api.spotify.com/v1/artists/${data.id}/top-tracks?country=SE&access_token=BQC12V3CA8jxi7GY7EwTqnDzBetlymr_5Q71aVvDk_GYs8CnL823ik0WQZihbPhHaxDSJg00vKwqt0Ge9pdwGP72KDJUCYWWXeUSqWScnYGp32HrVF5qby4J6jim0q2S2ddBFmQEODDtCjG-yBvM2jk7`
 
         return fetch(url2).then((res) => res.json())
         .then((jsonRes) => {
-          console.log(jsonRes, 'tracks');
+          console.log(jsonRes, 'tracks')
           return jsonRes.tracks[0]
         })
       })

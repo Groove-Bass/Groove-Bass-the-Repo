@@ -49,6 +49,8 @@ var styles = StyleSheet.create({
     }
 });
 
+
+
 class Concerts extends React.Component {
     getRowTitle(concert, item){
         item = (item === 'venueName') ? item= 'venue' : item;
@@ -69,10 +71,20 @@ class Concerts extends React.Component {
    this.state = {
      concert: props.navigation.state.params.concertData,
      artist: props.navigation.state.params.concertData[0].artistName,
-     preview: '',
+     preview: 'not here yet',
      error: false
    }
  }
+
+ componentWillMount() {
+   sapi.getArtist(this.state.artist)
+   .then((res) => {
+     this.setState({preview:res.preview_url})
+    //  this.state.preview = res.preview_url
+     return true;
+   })
+ }
+
   render() {
     const { navigate } = this.props.navigation;
     var concertInfo = this.state.concert
@@ -97,8 +109,6 @@ class Concerts extends React.Component {
             concertInfo[i]['showDate'] = fullDate
             newdate = []
           }
-
-
 
     var list = []
     var concertDetails = ['artists', 'venueName',  'showDate', 'address', 'city', 'ticketUrl'];
@@ -127,7 +137,6 @@ class Concerts extends React.Component {
                                <Text style={styles.rowContent}> {concertInfo[i][item]} </Text>
                            </View>
                        </View>
-
                    )
                }
              }
@@ -138,20 +147,24 @@ class Concerts extends React.Component {
           //  </View>)
            currentList = ""
            list.push(<View style={{ borderBottomColor: 'black', borderBottomWidth: 1}}></View>)
+
          }
-    //end jambase begin spotifyapi
-    sapi.getArtist(this.state.artist)
-    .then((res) => {
-      console.log(res);
-      this.state.preview = res.preview_url
-      // return preview
-    })
-    // console.log(this.state.preview);
+    // //end jambase begin spotifyapi
+    // sapi.getArtist(this.state.artist)
+    // .then((res) => {
+    //   // this.setState({preview:res.preview_url})
+    //   this.state.preview = res.preview_url
+    //   return true;
+    // })
+
+    console.log('PREVIEW OUTSIDE');
+    console.log(this.state.preview);
 
     return (
         <ScrollView style={styles.container}>
           <View style={styles.stickyHeader}>
           <Player url={this.state.preview} />
+          {/* <Player url= {'https://p.scdn.co/mp3-preview/aa88c40463c37cce4fee2cea1925e42fd1aa83b0?cid=3061c2868ac84b9fb2bacebfae61eba3'} /> */}
           </View>
           <View style={styles.listContainer}>
             {list}
