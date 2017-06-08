@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 var ReactNative = require('react-native');
 var jamapi = require('../Utils/jamapi');
-
-<<<<<<< HEAD
-
-
 // var Dashboard = require('./Dashboard');
 var sapi = require('../Utils/spotifyapi');
 
-
-=======
->>>>>>> 6b964f371c4cb63749070c60ed88efe0f6b1d2f1
 var {
   View,
   Text,
@@ -25,7 +18,7 @@ var {
 import { Form,
   Separator,InputField, LinkField,
   SwitchField, PickerField,DatePickerField,TimePickerField
-  } from 'react-native-form-generator';
+} from 'react-native-form-generator';
 
 var styles = StyleSheet.create({
   mainContainer: {

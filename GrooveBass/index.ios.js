@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-var ReactNative = require('react-native')
+import React, { Component } from 'react';
+var ReactNative = require('react-native');
 
 var Main = require('./App/Components/Main')
 var Location = require('./App/Components/Location')
