@@ -70,7 +70,7 @@ class Concerts extends React.Component {
     }
 
   static navigationOptions = ({navigation}) => ({
-   title: "Local Concerts",
+   title: "Concerts",
    concert: navigation.state.params.concertData
  });
  constructor(props){

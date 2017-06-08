@@ -71,7 +71,7 @@ var styles = StyleSheet.create({
 
 class Location extends React.Component {
   static navigationOptions = ({navigation}) => ({
-    title: 'Enter Location',
+    title: 'Location',
   });
     constructor(props){
      super(props);
@@ -113,7 +113,7 @@ class Location extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.mainContainer}>
-        <Form ref='registrationForm' 
+        <Form ref='registrationForm'
           onChange={this.handleFormChange.bind(this)}
           label="Location Information">
         <InputField style={styles.container}
