@@ -45,25 +45,26 @@ var styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: '#ff5e5b',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontWeight: 'bold'
   },
   button: {
-    height: 45,
+    height: 40,
     flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'white',
     borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
+    borderRadius: 5,
+    marginBottom: 5,
+    marginTop: 20,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
   container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    textAlign: 'center',
+    // justifyContent: 'center',
+    // marginTop: 50,
+    // padding: 20,
+    // textAlign: 'center',
     color:'#334d4d'
   }
 });
@@ -112,17 +113,17 @@ class Location extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.mainContainer}>
-        <Form ref='registrationForm'
+        <Form ref='registrationForm' 
           onChange={this.handleFormChange.bind(this)}
           label="Location Information">
-        <InputField
+        <InputField style={styles.container}
            ref='location'
            label='Location'
-           placeholder='Zipcode'/>
-        <InputField
+           placeholder='zipcode'/>
+        <InputField style={styles.container}
            ref='radius'
-           label='Radius'
-           placeholder='radius'/>
+           label='Search Radius'
+           placeholder='radius (in miles)'/>
       </Form>
        <TouchableHighlight
            style={styles.button}

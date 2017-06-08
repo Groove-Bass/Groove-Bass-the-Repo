@@ -17,24 +17,49 @@ var {
 } = ReactNative;
 
 var styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    buttonText: {
-        fontSize: 18,
-        color: 'white',
-        alignSelf: 'center'
-    },
-    rowContainer: {
-        padding: 10
-    },
-    rowTitle: {
-        color: '#48BBEC',
-        fontSize: 16
-    },
-    rowContent: {
-        fontSize: 19
-    }
+  mainContainer: {
+    flex: 1,
+    padding: 10,
+    flexDirection: 'column',
+    backgroundColor: '#00cecb'
+  },
+  container: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    color:'#334d4d'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#ff5e5b',
+    alignSelf: 'center',
+    fontWeight: 'bold'
+  },
+  rowContainer: {
+    color:'#334d4d'
+  },
+  rowTitle: {
+    color:'#ffed66',
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  rowContent: {
+    fontSize: 19,
+    color:'#334d4d'
+  },
+  button: {
+    height: 40,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 5,
+    marginTop: 5,
+    paddingLeft: 8,
+    paddingRight: 8,
+    alignSelf: 'center',
+    justifyContent: 'center'
+  }
 });
 
 class Concerts extends React.Component {
@@ -59,7 +84,6 @@ class Concerts extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     var concertInfo = this.state.concert
-    // ADD useable names for population on the concerts list
     var artists = ""
     for (var i = 0; i < concertInfo.length; i++) {
       for (var j = 0; j < concertInfo[i].artistName.length; j++){
@@ -70,7 +94,6 @@ class Concerts extends React.Component {
       concertInfo[i]['artists'] = artists
       artists = []
     }
-    // Add useable date formate for concerts list    var artists = ""
     let newdate = ""
         for (var i = 0; i < concertInfo.length; i++) {
             newdate = concertInfo[i].date.substr(0, concertInfo[i].date.length-9)
@@ -80,56 +103,46 @@ class Concerts extends React.Component {
             concertInfo[i]['showDate'] = fullDate
             newdate = []
           }
-
-
-
     var list = []
     var concertDetails = ['artists', 'venueName',  'showDate', 'address', 'city', 'ticketUrl'];
       for (var i = 0; i < concertInfo.length; i++) {
-           var currentList = concertDetails.map((item, index) => {
-               if(!concertInfo[i][item]){
-                   return <View key={index}/>
-               } else {
-                 if (item === 'ticketUrl') {
-                   let currentURL = concertInfo[i][item]
-                   return (
-                     <View key={index}>
-                         <View style={styles.rowContainer}>
-                         <Text style={{color: 'blue'}}
-                              onPress={() => Linking.openURL(currentURL)}>
-                              Purchase Tickets Here
-                        </Text>
-                      </View>
+        var currentList = concertDetails.map((item, index) => {
+          if(!concertInfo[i][item]){
+            return <View key={index}/>
+            } else {
+              if (item === 'ticketUrl') {
+                let currentURL = concertInfo[i][item]
+                return (
+                  <View key={index} style={styles.mainContainer}>
+                  <View style={styles.rowContainer}>
+                    <TouchableHighlight style={styles.button}
+                      onPress={() => Linking.openURL(currentURL)} underlayColor="white">
+                      <Text style={styles.buttonText}>Buy Tickets</Text>
+                    </TouchableHighlight>
+                  </View>
+                  </View>
+                )} else {
+                  return (
+                    <View key={index} style={styles.mainContainer}>
+                    <View style={styles.rowContainer}>
+                       <Text style={styles.rowTitle}> {this.getRowTitle(concertInfo[i], item)} </Text>
+                       <Text style={styles.rowContent}> {concertInfo[i][item]} </Text>
+                    </View>
                     </View>
                   )
-                } else {
-                   return (
-                       <View key={index}>
-                           <View style={styles.rowContainer}>
-                               <Text style={styles.rowTitle}> {this.getRowTitle(concertInfo[i], item)} </Text>
-                               <Text style={styles.rowContent}> {concertInfo[i][item]} </Text>
-                           </View>
-                       </View>
-                   )
-               }
-             }
-           })
+                }
+              }
+            })
            list.push(currentList)
            currentList = ""
-           list.push(<View style={{ borderBottomColor: 'black', borderBottomWidth: 1}}></View>)
-         }
-
-    return (
-
-
-      <ScrollView style={styles.container}>
+           list.push(<View style={{ borderBottomColor: '#334d4d', borderBottomWidth: 1}}></View>)
+      }
+      return (
+      <ScrollView>
           {list}
       </ScrollView>
-
     )
   }
 };
-
-
 
 module.exports = Concerts;

@@ -81,17 +81,18 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: '#ff5e5b',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontWeight: 'bold'
   },
   button: {
-    height: 45,
+    height: 40,
     flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'white',
     borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
+    borderRadius: 5,
+    marginBottom: 5,
+    marginTop: 20,
     alignSelf: 'stretch',
     justifyContent: 'center'
   }
