@@ -22,16 +22,15 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
-    marginTop: 65,
     flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#48BBEC'
+    backgroundColor: '#00cecb'
   },
   title: {
-    marginBottom: 20,
+    marginBottom: 15,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: '#ffed66',
+    fontWeight: 'bold'
   },
   searchInput: {
     height: 50,
@@ -45,7 +44,7 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#111',
+    color: '#ff5e5b',
     alignSelf: 'center'
   },
   button: {
@@ -64,11 +63,10 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
     padding: 20,
-    backgroundColor: '#ffffff',
+    textAlign: 'center',
+    color:'#334d4d'
   }
 });
-
-
 
 class Location extends React.Component {
   static navigationOptions = ({navigation}) => ({
@@ -113,7 +111,7 @@ class Location extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <View style={styles.mainContainer}>
         <Form ref='registrationForm'
           onChange={this.handleFormChange.bind(this)}
           label="Location Information">
@@ -130,7 +128,7 @@ class Location extends React.Component {
            style={styles.button}
            onPress={this.handleSubmit.bind(this)}
            underlayColor="white">
-           <Text style={styles.buttonText}> SEARCH </Text>
+           <Text style={styles.buttonText}> Cast Your Line </Text>
        </TouchableHighlight>
        <ActivityIndicator
           animating={this.state.isLoading}
@@ -142,14 +140,4 @@ class Location extends React.Component {
   }
 }
 
-// <Button
-//   title="Search your location"
-//   onPress={() =>
-//     navigate('Player', {'location': this.state.location},{'radius': this.state.radius})
-//   }
-// />
-
-
-// <ScrollView keyboardShouldPersistTaps="always" style={{paddingLeft:10,paddingRight:10, height:200}}>
-  // </ScrollView>
 module.exports = Location;
