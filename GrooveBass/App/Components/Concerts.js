@@ -4,6 +4,8 @@ var ReactNative = require('react-native');
 // var api = require('../Utils/api');
 // var Dashboard = require('./Dashboard');
 import  PlayerUI  from './Player';
+var sapi = require('../Utils/spotifyapi')
+import { Player } from 'react-native-audio-streaming';
 
 var {
   View,
@@ -20,7 +22,7 @@ var {
 var styles = StyleSheet.create({
     container: {
       flex: 1,
-      // position: 'relative'
+      position: 'absolute'
     },
     buttonText: {
         fontSize: 18,
@@ -38,8 +40,12 @@ var styles = StyleSheet.create({
         fontSize: 19
     },
     stickyHeader: {
-      // position: 'absolute',
-      top: 100
+      position: 'relative',
+      top: 91
+    },
+    listContainer: {
+      position: 'relative',
+      top: 151
     }
 });
 
@@ -52,13 +58,18 @@ class Concerts extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
    title: "Local Concerts",
-   concert: navigation.state.params.concertData
+   concert: navigation.state.params.concertData,
+   artist: navigation.state.params.concertData
  });
  constructor(props){
    super(props);
 
+   console.log(props.navigation.state.params.concertData[0].artistName[0].Name);
+
    this.state = {
      concert: props.navigation.state.params.concertData,
+     artist: props.navigation.state.params.concertData[0].artistName,
+     preview: '',
      error: false
    }
  }
@@ -122,16 +133,29 @@ class Concerts extends React.Component {
              }
            })
            list.push(currentList)
+          //  list.push(<View>
+          //    <PlayerUI />
+          //  </View>)
            currentList = ""
            list.push(<View style={{ borderBottomColor: 'black', borderBottomWidth: 1}}></View>)
          }
+    //end jambase begin spotifyapi
+    sapi.getArtist(this.state.artist)
+    .then((res) => {
+      console.log(res);
+      this.state.preview = res.preview_url
+      // return preview
+    })
+    // console.log(this.state.preview);
 
     return (
         <ScrollView style={styles.container}>
           <View style={styles.stickyHeader}>
-            <PlayerUI />
+          <Player url={this.state.preview} />
           </View>
+          <View style={styles.listContainer}>
             {list}
+          </View>
         </ScrollView>
 
         // <PlayerUI />

@@ -35,6 +35,14 @@ export default class PlayerUI extends React.Component {
     // const { navigate } = this.props.navigation;
     console.log('hey');
     // console.log(this.state.concert);
+
+    sapi.getArtist(this.state.artist.artist.artistName)
+    .then((res) => {
+      console.log('player tracks', res.preview_url);
+      this.state.preview = res.preview_url
+      // return preview
+    })
+    console.log(this.state.preview);
     return (
       <View>
       <Player url={"http://lacavewebradio.chickenkiller.com:8000/stream.mp3"} />
