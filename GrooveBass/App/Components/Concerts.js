@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 var ReactNative = require('react-native');
 // var api = require('../Utils/api');
 // var Dashboard = require('./Dashboard');
+import  PlayerUI  from './Player';
 
 var {
   View,
@@ -18,7 +19,8 @@ var {
 
 var styles = StyleSheet.create({
     container: {
-        flex: 1
+      flex: 1,
+      // position: 'relative'
     },
     buttonText: {
         fontSize: 18,
@@ -34,6 +36,10 @@ var styles = StyleSheet.create({
     },
     rowContent: {
         fontSize: 19
+    },
+    stickyHeader: {
+      // position: 'absolute',
+      top: 100
     }
 });
 
@@ -110,6 +116,7 @@ class Concerts extends React.Component {
                                <Text style={styles.rowContent}> {concertInfo[i][item]} </Text>
                            </View>
                        </View>
+
                    )
                }
              }
@@ -120,12 +127,14 @@ class Concerts extends React.Component {
          }
 
     return (
+        <ScrollView style={styles.container}>
+          <View style={styles.stickyHeader}>
+            <PlayerUI />
+          </View>
+            {list}
+        </ScrollView>
 
-
-      <ScrollView style={styles.container}>
-          {list}
-      </ScrollView>
-
+        // <PlayerUI />
     )
   }
 };

@@ -15,7 +15,7 @@ var jamapi = {
     }
     var startDate = yyyy + '-' + mm + '-' + dd
     var endDate = '2017-06-14'
-    var url = `http://api.jambase.com/events?zipCode=${location}&radius=${radius}&startDate=${startDate}T20%3A00%3A00&endDate=${endDate}T20%3A00%3A00&page=0&api_key=vygxvm2m2333y2fm78z37j6t`
+    var url = `http://api.jambase.com/events?zipCode=${location}&radius=${radius}&startDate=${startDate}T20%3A00%3A00&endDate=${endDate}T20%3A00%3A00&page=0&api_key=5x8rskju2fnj5txzc453g282`
     console.log(url)
     return fetch(url).then(res => res.json())
     .then((jsonRes) => {
