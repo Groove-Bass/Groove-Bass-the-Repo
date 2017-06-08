@@ -128,14 +128,17 @@ class Location extends React.Component {
     var location = this.refs.registrationForm.values.location
     var radius = this.refs.registrationForm.values.radius
 
-        jamapi.getMusic(location, radius)
-        .then((data) => {
-          console.log('data');
-
-        })
-        .catch ((err) => {
-           console.log('error', err)
-        })
+    jamapi.getMusic(location, radius)
+    .then((data) => {
+      console.log('data');
+      console.log(data);
+      // navigate('Player', {artist: data})
+      this.props.navigation.navigate('Player', {artist: data[0]})
+      // this.setState({artist: data[0]})
+    })
+    .catch ((err) => {
+      console.log('error', err)
+    })
 
   }
   render() {

@@ -4,7 +4,7 @@ var ReactNative = require('react-native');
 import HTMLView from 'react-native-htmlview';
 import { Player, ReactNativeAudioStreaming } from 'react-native-audio-streaming';
 
-
+var sapi = require('../Utils/spotifyapi');
 // var api = require('../Utils/api');
 // var Dashboard = require('./Dashboard');
 
@@ -26,21 +26,33 @@ class PlayerUI extends React.Component {
     artist: navigation.state.params
   });
   constructor(props){
-    console.log(props, 'props');
+    console.log(props.navigation.state.params, 'props');
     super(props);
+
     this.state = {
       artist: props.navigation.state.params,
+      preview: '',
       error: false
     }
   }
+  // componentDidMount(){
+  //   console.log('hello');
+
+  // }
   render() {
     const { navigate } = this.props.navigation;
 
+    sapi.getArtist(this.state.artist.artist.artistName)
+    .then((res) => {
+      console.log('player tracks', res.preview_url);
+      this.state.preview = res.preview_url
+      // return preview
+    })
+    console.log(this.state.preview);
+
+
     return (
-      <View>
-      <Text>Hello</Text>
-      <Player url={"https://p.scdn.co/mp3-preview/728a8b5dd1a88cf02fcb0a6ba53be0268b1ec933?cid=3061c2868ac84b9fb2bacebfae61eba3"} />
-      </View>
+      <Player url={`"${this.state.preview}"`} />
     );
   }
 }

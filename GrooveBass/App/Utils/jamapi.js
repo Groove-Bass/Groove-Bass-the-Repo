@@ -15,14 +15,14 @@ var jamapi = {
     }
     var startDate = yyyy+'-'+mm+'-'+dd;
     var endDate ='2017-06-14';
-    var url = `http://api.jambase.com/events?zipCode=${location}&radius=${radius}&startDate=${startDate}T20%3A00%3A00&endDate=${endDate}T20%3A00%3A00&page=0&api_key=62uety22hfk9ppf6ttpxgqkw`
+    var url = `http://api.jambase.com/events?zipCode=${location}&radius=${radius}&startDate=${startDate}T20%3A00%3A00&endDate=${endDate}T20%3A00%3A00&page=0&api_key=mnzs2h3am23p7gaqkfh46q5a`
     console.log(url)
     return fetch(url).then(res => res.json())
     .then((jsonRes) => {
       for (var i=0; i<(jsonRes.Events).length; i++){
-        for (var j=0; j<(jsonRes.Events[i].Artists).length; j++){
-          jamBaseData.push({artistName: jsonRes.Events[i].Artists[j].Name, date: jsonRes.Events[i].Date, ticketUrl: jsonRes.Events[i].TicketUrl, venueName: jsonRes.Events[i].Venue.Name, address: jsonRes.Events[i].Venue.Address, city: jsonRes.Events[i].Venue.City, state: jsonRes.Events[i].Venue.StateCode, zipcode: jsonRes.Events[i].Venue.ZipCode})
-        }
+
+          jamBaseData.push({artistName: jsonRes.Events[i].Artists, date: jsonRes.Events[i].Date, ticketUrl: jsonRes.Events[i].TicketUrl, venueName: jsonRes.Events[i].Venue.Name, address: jsonRes.Events[i].Venue.Address, city: jsonRes.Events[i].Venue.City, state: jsonRes.Events[i].Venue.StateCode, zipcode: jsonRes.Events[i].Venue.ZipCode})
+
       }
       console.log(jamBaseData)
       return jamBaseData
