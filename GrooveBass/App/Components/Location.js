@@ -109,7 +109,7 @@ class Location extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <View style={styles.container} keyboardShouldPersistTaps='always'>
         <Form ref='registrationForm'
           onChange={this.handleFormChange.bind(this)}
           label="Location Information">
@@ -125,7 +125,8 @@ class Location extends React.Component {
        <TouchableHighlight
            style={styles.button}
            onPress={this.handleSubmit.bind(this)}
-           underlayColor="white">
+           underlayColor="white"
+           keyboardShouldPersistTaps='always'>
            <Text style={styles.buttonText}> SEARCH </Text>
        </TouchableHighlight>
       </View>
