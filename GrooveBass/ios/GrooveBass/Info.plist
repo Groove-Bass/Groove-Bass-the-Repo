@@ -25,14 +25,10 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
+
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>api.jambase.com</key>
-			<dict>
-				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
 
 			<key>localhost</key>
 			<dict>
@@ -46,9 +42,9 @@
 				<true/>
 			</dict>
 
-
 		</dict>
 	</dict>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIBackgroundModes</key>
