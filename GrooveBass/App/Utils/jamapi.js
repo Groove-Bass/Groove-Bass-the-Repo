@@ -1,17 +1,17 @@
 
 var jamapi = {
   getMusic (location, radius) {
-    var jamBaseData = []
-    var startDate = new Date();
-    var dd = startDate.getDate();
-    var mm = startDate.getMonth()+1; //January is 0!
+    var JamBaseData = []
+    var startDate = new Date()
+    var dd = startDate.getDate()
+    var mm = startDate.getMonth() + 1 // January is 0!
 
-    var yyyy = startDate.getFullYear();
-    if(dd<10){
-      dd='0'+dd;
+    var yyyy = startDate.getFullYear()
+    if (dd < 10) {
+      dd = '0' + dd
     }
-    if(mm<10){
-      mm='0'+mm;
+    if (mm < 10) {
+      mm = '0' + mm
     }
     var startDate = yyyy+'-'+mm+'-'+dd;
     var endDate ='2017-06-14';
@@ -24,8 +24,8 @@ var jamapi = {
           jamBaseData.push({artistName: jsonRes.Events[i].Artists, date: jsonRes.Events[i].Date, ticketUrl: jsonRes.Events[i].TicketUrl, venueName: jsonRes.Events[i].Venue.Name, address: jsonRes.Events[i].Venue.Address, city: jsonRes.Events[i].Venue.City, state: jsonRes.Events[i].Venue.StateCode, zipcode: jsonRes.Events[i].Venue.ZipCode})
 
       }
-      console.log(jamBaseData)
-      return jamBaseData
+      console.log(JamBaseData)
+      return JamBaseData
     })
   }
 }

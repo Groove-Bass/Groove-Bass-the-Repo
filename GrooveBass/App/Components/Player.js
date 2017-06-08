@@ -56,5 +56,3 @@ class PlayerUI extends React.Component {
     );
   }
 }
-
-module.exports = PlayerUI;

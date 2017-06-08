@@ -1,14 +1,16 @@
-// var React = require('react-native');
 import React, { Component } from 'react';
 var ReactNative = require('react-native');
 var jamapi = require('../Utils/jamapi');
 
+<<<<<<< HEAD
 
 
 // var Dashboard = require('./Dashboard');
 var sapi = require('../Utils/spotifyapi');
 
 
+=======
+>>>>>>> 6b964f371c4cb63749070c60ed88efe0f6b1d2f1
 var {
   View,
   Text,
@@ -23,16 +25,7 @@ var {
 import { Form,
   Separator,InputField, LinkField,
   SwitchField, PickerField,DatePickerField,TimePickerField
-} from 'react-native-form-generator';
-
-// export class FormView extends React.Component{
-//   constructor(props){
-//     super(props);
-//     this.state = {
-//       formData:{}
-//     }
-//   }
-// }
+  } from 'react-native-form-generator';
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -90,86 +83,60 @@ class Location extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: 'Enter Location',
   });
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     location: '',
-  //     radius: '',
-  //     error: false
-  //   }
-  // }
-  // handleChange(event){
-  //   this.setState({
-  //     location: event.nativeEvent.text,
-  //     radius: event.nativeEvent.text
-  //   })
-  // }
+    constructor(props){
+     super(props);
+     this.state = {
+       error: false,
+       formData: '',
+       concertData: '',
+     }
+   }
+
   handleFormChange(formData){
-      /*
-      formData will contain all the values of the form,
-      in this example.
-
-      formData = {
-      first_name:"",
-      last_name:"",
-      gender: '',
-      birthday: Date,
-      has_accepted_conditions: bool
-      }
-      */
-
       this.setState({formData:formData})
       this.props.onFormChange && this.props.onFormChange(formData);
     }
 
   handleSubmit(){
     console.log('hit submit');
-    console.log(this.refs.registrationForm.values)
+    // console.log(this.refs.registrationForm.values)
     var location = this.refs.registrationForm.values.location
     var radius = this.refs.registrationForm.values.radius
 
-    jamapi.getMusic(location, radius)
-    .then((data) => {
-      console.log('data');
-      console.log(data);
-      // navigate('Player', {artist: data})
-      this.props.navigation.navigate('Player', {artist: data[0]})
-      // this.setState({artist: data[0]})
-    })
-    .catch ((err) => {
-      console.log('error', err)
-    })
-
+        jamapi.getMusic(location, radius)
+        .then((res) => {
+            this.setState({concertData: res})
+            this.props.navigation.navigate('Concerts', {concertData: this.state.concertData})
+            this.setState({
+             error: false,
+           })
+        })
+      .catch ((err) => {
+         console.log('error', err)
+       })
   }
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-      <Form ref='registrationForm'
-
-        onChange={this.handleFormChange.bind(this)}
-        label="Location Information">
-
+        <Form ref='registrationForm'
+          onChange={this.handleFormChange.bind(this)}
+          label="Location Information">
         <InputField
-             ref='location'
-             label='Location'
-             placeholder='Zipcode'/>
-
+           ref='location'
+           label='Location'
+           placeholder='Zipcode'/>
         <InputField
-             ref='radius'
-             label='Radius'
-             placeholder='radius'/>
-
-
+           ref='radius'
+           label='Radius'
+           placeholder='radius'/>
       </Form>
-
-           <TouchableHighlight
-             style={styles.button}
-             onPress={this.handleSubmit.bind(this)}
-             underlayColor="white">
-             <Text style={styles.buttonText}> SEARCH </Text>
-           </TouchableHighlight>
-
+       <TouchableHighlight
+           style={styles.button}
+           onPress={this.handleSubmit.bind(this)}
+           underlayColor="white">
+           <Text style={styles.buttonText}> SEARCH </Text>
+       </TouchableHighlight>
       </View>
 
     );
