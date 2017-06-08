@@ -1,11 +1,6 @@
-// var React = require('react-native');
 import React, { Component } from 'react';
 var ReactNative = require('react-native');
 var jamapi = require('../Utils/jamapi');
-
-
-
-// var Dashboard = require('./Dashboard');
 
 var {
   View,
@@ -21,16 +16,7 @@ var {
 import { Form,
   Separator,InputField, LinkField,
   SwitchField, PickerField,DatePickerField,TimePickerField
-} from 'react-native-form-generator';
-
-// export class FormView extends React.Component{
-//   constructor(props){
-//     super(props);
-//     this.state = {
-//       formData:{}
-//     }
-//   }
-// }
+  } from 'react-native-form-generator';
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -88,91 +74,60 @@ class Location extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: 'Enter Location',
   });
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     location: '',
-  //     radius: '',
-  //     error: false
-  //   }
-  // }
-  // handleChange(event){
-  //   this.setState({
-  //     location: event.nativeEvent.text,
-  //     radius: event.nativeEvent.text
-  //   })
-  // }
+    constructor(props){
+     super(props);
+     this.state = {
+       error: false,
+       formData: '',
+       concertData: '',
+     }
+   }
+
   handleFormChange(formData){
-      /*
-      formData will contain all the values of the form,
-      in this example.
-
-      formData = {
-      first_name:"",
-      last_name:"",
-      gender: '',
-      birthday: Date,
-      has_accepted_conditions: bool
-      }
-      */
-
       this.setState({formData:formData})
       this.props.onFormChange && this.props.onFormChange(formData);
     }
 
   handleSubmit(){
     console.log('hit submit');
-    console.log(this.refs.registrationForm.values)
+    // console.log(this.refs.registrationForm.values)
     var location = this.refs.registrationForm.values.location
     var radius = this.refs.registrationForm.values.radius
 
         jamapi.getMusic(location, radius)
         .then((res) => {
-          if(res.message === 'Not Found'){
+            this.setState({concertData: res})
+            this.props.navigation.navigate('Concerts', {concertData: this.state.concertData})
             this.setState({
-              error: 'Location not found',
-            })
-+         } else {
-            this.props.navigation.navigate('Player', {'data': this.state.location})
-            this.setState({
-+             error: false,
-+             location: ''
-+           })
-+        }
-+      })
-+      .catch ((err) => {
-+         console.log('error', err)
-+       })
+             error: false,
+           })
+        })
+      .catch ((err) => {
+         console.log('error', err)
+       })
   }
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-      <Form ref='registrationForm'
-
-        onChange={this.handleFormChange.bind(this)}
-        label="Location Information">
-
+        <Form ref='registrationForm'
+          onChange={this.handleFormChange.bind(this)}
+          label="Location Information">
         <InputField
-             ref='location'
-             label='Location'
-             placeholder='Zipcode'/>
-
+           ref='location'
+           label='Location'
+           placeholder='Zipcode'/>
         <InputField
-             ref='radius'
-             label='Radius'
-             placeholder='radius'/>
-
-
+           ref='radius'
+           label='Radius'
+           placeholder='radius'/>
       </Form>
-
-           <TouchableHighlight
-             style={styles.button}
-             onPress={this.handleSubmit.bind(this)}
-             underlayColor="white">
-             <Text style={styles.buttonText}> SEARCH </Text>
-           </TouchableHighlight>
-
+       <TouchableHighlight
+           style={styles.button}
+           onPress={this.handleSubmit.bind(this)}
+           underlayColor="white">
+           <Text style={styles.buttonText}> SEARCH </Text>
+       </TouchableHighlight>
       </View>
 
     );

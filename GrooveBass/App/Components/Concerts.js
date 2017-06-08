@@ -16,8 +16,20 @@ var {
 
 class Concerts extends React.Component {
   static navigationOptions = ({navigation}) => ({
-    title: "BassGroovin' near You!",
-  });
+   title: "Local Concerts",
+  //  title: navigation.state.params.location,
+   concert: navigation.state.params.concertData
+ });
+ constructor(props){
+   console.log('data is????');
+   console.log(props.navigation.state.params);
+   super(props);
+
+   this.state = {
+     concert: props.navigation.state.params,
+     error: false
+   }
+ }
   render() {
     const { navigate } = this.props.navigation;
     return (
