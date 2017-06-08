@@ -22,7 +22,7 @@ var {
 var styles = StyleSheet.create({
     container: {
       flex: 1,
-      position: 'absolute'
+      // position: 'absolute'
     },
     buttonText: {
         fontSize: 18,
@@ -83,9 +83,16 @@ class Concerts extends React.Component {
     //  this.state.preview = res.preview_url
      return true;
    })
+   .catch ((err) => {
+      console.log('error', err)
+      isLoading: false
+    })
  }
 
+
   render() {
+    console.log('preivew');
+    console.log(this.state.preview);
     const { navigate } = this.props.navigation;
     var concertInfo = this.state.concert
     // ADD useable names for population on the concerts list
@@ -156,9 +163,6 @@ class Concerts extends React.Component {
     //   this.state.preview = res.preview_url
     //   return true;
     // })
-
-    console.log('PREVIEW OUTSIDE');
-    console.log(this.state.preview);
 
     return (
         <ScrollView style={styles.container}>
