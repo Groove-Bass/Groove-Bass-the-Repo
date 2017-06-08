@@ -62,10 +62,6 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   },
   container: {
-    // justifyContent: 'center',
-    // marginTop: 50,
-    // padding: 20,
-    // textAlign: 'center',
     color:'#334d4d'
   }
 });
@@ -124,7 +120,7 @@ class Location extends React.Component {
         <InputField style={styles.container}
            ref='radius'
            label='Search Radius'
-           placeholder='radius (in miles)'/>
+           placeholder='(in miles)'/>
       </Form>
        <TouchableHighlight
            style={styles.button}
@@ -137,7 +133,8 @@ class Location extends React.Component {
           color="#111"
           size="large">
         </ActivityIndicator>
-        <Image style={{flex:1, height: '50%', width: '50%', alignSelf: 'center'}} source={require('./bobber.png')} resizeMode="contain"
+        <Image
+          style={{flex:1, height: '50%', width: '50%', alignSelf: 'center'}} source={require('./bobber.png')} resizeMode="contain"
         />
       </View>
 
