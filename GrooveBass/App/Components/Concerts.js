@@ -37,10 +37,6 @@ var styles = StyleSheet.create({
       alignSelf: 'center',
       fontWeight: 'bold'
     },
-    rowContainer: {
-      // padding: 10,
-      color:'#334d4d'
-    },
     rowTitle: {
       color:'#ffed66',
       fontSize: 16,
@@ -145,13 +141,13 @@ class Concerts extends React.Component {
       for (var i = 0; i < concertInfo.length; i++) {
            var currentList = concertDetails.map((item, index) => {
                if(!concertInfo[i][item]){
-                   return <View key={index}/>
+                   return <View key={i*10 + index}/>
                } else {
                  if (item === 'ticketUrl') {
                    let currentURL = concertInfo[i][item]
                    return (
-                     <View key={index} style={styles.mainContainer}>
-                         <View style={styles.rowContainer}>
+                     <View key={i*10 + index} style={styles.mainContainer}>
+                         <View>
                          <TouchableHighlight style={styles.button}
                             onPress={() => Linking.openURL(currentURL)} underlayColor="white">
                             <Text style={styles.buttonText}>Buy Tickets</Text>
@@ -162,7 +158,7 @@ class Concerts extends React.Component {
                 } else {
                    return (
                        <View key={index} style={styles.mainContainer}>
-                           <View style={styles.rowContainer}>
+                           <View>
                                <Text style={styles.rowTitle}> {this.getRowTitle(concertInfo[i], item)} </Text>
                                <Text style={styles.rowContent}> {concertInfo[i][item]} </Text>
                            </View>
@@ -173,7 +169,7 @@ class Concerts extends React.Component {
            })
            list.push(currentList)
            currentList = ""
-           list.push(<View style={{ borderBottomColor: 'black', borderBottomWidth: 1}}></View>)
+           list.push(<View key={100*i} style={{ borderBottomColor: 'black', borderBottomWidth: 1}}></View>)
          }
     return (
         <ScrollView style={styles.mainContainer}>
