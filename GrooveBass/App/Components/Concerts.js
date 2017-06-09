@@ -1,8 +1,5 @@
-// var React = require('react-native');
 import React, { Component } from 'react';
 var ReactNative = require('react-native');
-// var api = require('../Utils/api');
-// var Dashboard = require('./Dashboard');
 import  PlayerUI  from './Player';
 var sapi = require('../Utils/spotifyapi')
 import { Player } from 'react-native-audio-streaming';
@@ -175,7 +172,6 @@ class Concerts extends React.Component {
         <ScrollView style={styles.mainContainer}>
           <View style={styles.stickyHeader}>
           <Player url={this.state.preview} />
-          {/* <Player url= {'https://p.scdn.co/mp3-preview/aa88c40463c37cce4fee2cea1925e42fd1aa83b0?cid=3061c2868ac84b9fb2bacebfae61eba3'} /> */}
           </View>
           <View style={styles.listContainer}>
             {list}

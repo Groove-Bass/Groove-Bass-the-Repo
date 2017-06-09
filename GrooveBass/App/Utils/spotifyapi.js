@@ -1,53 +1,17 @@
 var spotifyapi = {
-  // TODO: write spotifybase api
-  // getTrack(artists) {
-  //   var
-  // }
 
   getArtist (artists) {
-    console.log('hit the spot api')
-    // let artistArray = [
-    //   {
-    //     id: 1,
-    //     name: 'Wilco'
-    //   },
-    //   {
-    //     id: 2,
-    //     name: 'Broken Social Scene'
-    //   },
-    //   {
-    //     id: 3,
-    //     name: 'Bob Dylan'
-    //   }
-    // ]
-
-    console.log(artists)
-
     var formattedArtists = []
-
-    // let artistSpotify = artists.map((item, index) => {
-    //   let url = `https://api.spotify.com/v1/search?q=${item['Name']}&type=artist&access_token=BQD3opNL-Jr9EgRsWkfhbEfOu4N3Eed7F5Pd8R0Y3MuTrcVTPwnQ9ppEFXj-yNJzr8iYOHehQB4PUMKsiPvprqJ4a9zq2TZIlkjcq88AoVoMWgBveCmACDwBTqzj8PKxOjH4bzRK6muB3F3CXP3Puj_3`
-    //   return fetch(url).then((res) => res.json())
-    //   .then((jsonRes) => {
-    //     console.log(jsonRes);
-    //     formattedArtists.push(jsonRes.artists.items[0])
-    //     // formattedArtists.push(jsonRes.artists.items[0])
-    //     return formattedArtists
-    //   })
-    // })
 
     for (var i = 0; i < artists.length; i++) {
       let url = `https://api.spotify.com/v1/search?q=${artists[i]['Name']}&type=artist&access_token=BQA52qh0aTrZn4u9GGeWmsDlteIZKOojFWtKRl0OE6iJszlPVmcVyxvQOyORkTT8zbJFsqg1hGc_PbRKAvngDM1jH_L79yB6yeDTHKaRNmHd3VFPqqoPEUpeyVUiNovfEQQHf-8V4Bcbuo6Do2cIBvTq`
 
       return fetch(url).then((res) => res.json())
       .then((jsonRes) => {
-        // console.log(jsonRes);
         return jsonRes.artists.items[0]
       })
       .then((data) => {
-        // console.log(data, 'data');
         let url2 = `https://api.spotify.com/v1/artists/${data.id}/top-tracks?country=SE&access_token=BQA52qh0aTrZn4u9GGeWmsDlteIZKOojFWtKRl0OE6iJszlPVmcVyxvQOyORkTT8zbJFsqg1hGc_PbRKAvngDM1jH_L79yB6yeDTHKaRNmHd3VFPqqoPEUpeyVUiNovfEQQHf-8V4Bcbuo6Do2cIBvTq`
-
         return fetch(url2).then((res) => res.json())
         .then((jsonRes) => {
           console.log(jsonRes, 'tracks')
@@ -55,15 +19,6 @@ var spotifyapi = {
         })
       })
     }
-
-    // submitArtist(){
-    //   sapi.getArtist()
-    //   .then((res) => {
-    //     console.log('hi from here.')
-    //     console.log(res);
-    //     // this.props.navigation.navigate('Player', {artist: res})
-    //   })
-    // }
   }
 }
 
