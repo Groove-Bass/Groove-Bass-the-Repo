@@ -18,13 +18,13 @@ var jamapi = {
 
     var url = `http://api.jambase.com/events?zipCode=${location}&radius=${radius}&startDate=${startDate}T20%3A00%3A00&endDate=${endDate}T20%3A00%3A00&page=0&api_key=t8h3n6xbzfcyyf2ksfnkd5hj`
 
-    console.log(url)
+
     return fetch(url).then(res => res.json())
     .then((jsonRes) => {
       for (var i = 0; i < (jsonRes.Events).length; i++) {
         JamBaseData.push({artistName: jsonRes.Events[i].Artists, date: jsonRes.Events[i].Date, ticketUrl: jsonRes.Events[i].TicketUrl, venueName: jsonRes.Events[i].Venue.Name, address: jsonRes.Events[i].Venue.Address, city: jsonRes.Events[i].Venue.City, state: jsonRes.Events[i].Venue.StateCode, zipcode: jsonRes.Events[i].Venue.ZipCode})
       }
-      console.log(JamBaseData)
+
       return JamBaseData
     })
   }

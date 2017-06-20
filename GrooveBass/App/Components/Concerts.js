@@ -84,7 +84,7 @@ class Concerts extends React.Component {
  constructor(props){
    super(props);
 
-   console.log(props.navigation.state.params.concertData[0].artistName[0].Name);
+
 
    this.state = {
      concert: props.navigation.state.params.concertData,
@@ -101,14 +101,14 @@ class Concerts extends React.Component {
      return true;
    })
    .catch ((err) => {
-      console.log('error', err)
+
       isLoading: false
     })
  }
 
   render() {
-    console.log('preivew');
-    console.log(this.state.preview);
+
+
     const { navigate } = this.props.navigation;
     var concertInfo = this.state.concert
     // ADD useable names for population on the concerts list
@@ -122,6 +122,7 @@ class Concerts extends React.Component {
       concertInfo[i]['artists'] = artists
       artists = []
     }
+
     // Add useable date formate for concerts list    var artists = ""
     let newdate = ""
         for (var i = 0; i < concertInfo.length; i++) {
